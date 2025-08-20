@@ -41,6 +41,17 @@
             return NodeFilter.FILTER_REJECT;
           }
 
+          // Skip input fields, textareas, and other interactive/editable elements
+          if (tagName === "input" || tagName === "textarea" || tagName === "select" ||
+              tagName === "option" || tagName === "button") {
+            return NodeFilter.FILTER_REJECT;
+          }
+
+          // Skip elements with contenteditable attribute
+          if (parent.isContentEditable) {
+            return NodeFilter.FILTER_REJECT;
+          }
+
           // Skip if the text node is empty or only whitespace
           if (!node.textContent.trim()) {
             return NodeFilter.FILTER_REJECT;
@@ -89,8 +100,10 @@
             const parent = node.parentElement;
             if (parent) {
               const tagName = parent.tagName.toLowerCase();
-              // Skip script and style elements
-              if (tagName !== "script" && tagName !== "style" && tagName !== "noscript") {
+              // Skip script, style, and interactive elements
+              if (tagName !== "script" && tagName !== "style" && tagName !== "noscript" &&
+                  tagName !== "input" && tagName !== "textarea" && tagName !== "select" &&
+                  tagName !== "option" && tagName !== "button" && !parent.isContentEditable) {
                 const originalText = node.textContent;
                 const transformedText = transformText(originalText);
                 if (originalText !== transformedText) {
