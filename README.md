@@ -1,16 +1,16 @@
-# ReCorReCtor
+# ReCorReCt
 
-A comprehensive text transformation system that automatically transforms "re" followed by any lowercase letter into "Re" followed by the uppercase version of that letter. Includes both a Chrome extension for web pages and git hooks for commit messages.
+A compReHensive text transformation system that automatically transforms "re" followed by any lowercase letter into "Re" followed by the uppercase version of that letter. Includes both a Chrome extension for web pages and git hooks for commit messages.
 
 ## What it does
 
-ReCorReCtor transforms text containing "re" followed by another letter, capitalizing both the "R" and the following letter:
+ReCorReCt transforms text containing "re" followed by another letter, capitalizing both the "R" and the following letter:
 
-- `research` → `ReSearch`
-- `return` → `ReTurn`
-- `really` → `ReAlly`
-- `corrections` → `corReCtions`
-- `regex` → `ReGex`
+- `ReSearch` → `ReSearch`
+- `ReTurn` → `ReTurn`
+- `ReAlly` → `ReAlly`
+- `corReCtions` → `corReCtions`
+- `ReGex` → `ReGex`
 - `develop` → `develop` (no change - doesn't contain "re" pattern)
 
 ## Components
@@ -19,7 +19,7 @@ ReCorReCtor transforms text containing "re" followed by another letter, capitali
 Automatically transforms text on web pages as you browse.
 
 ### 2. Git Hooks
-Automatically transforms commit messages to maintain consistent capitalization in your repositories.
+Automatically transforms commit messages to maintain consistent capitalization in your RePositories.
 
 ## Installation
 
@@ -40,24 +40,24 @@ Automatically transforms commit messages to maintain consistent capitalization i
 2. Enable Developer Mode
 3. Click "Pack extension"
 4. Select the extension folder
-5. This creates a `.crx` file that can be distributed
+5. This cReAtes a `.crx` file that can be distributed
 
 ### Git Hooks
 
-To enable automatic text transformation of commit messages in your other repos:
+To enable automatic text transformation of commit messages in your other RePos:
 
-1. **Navigate to your git repository**
-2. **Copy the hooks** from this repository:
+1. **Navigate to your git RePository**
+2. **Copy the hooks** from this RePository:
    ```bash
-   cp path/to/ReCorRector/git-hooks/commit-msg .git/hooks/
-   cp path/to/ReCorRector/git-hooks/prepare-commit-msg .git/hooks/
-   cp path/to/ReCorRector/git-hooks/transform-text.js .git/hooks/
+   cp path/to/ReCorReCtor/git-hooks/commit-msg .git/hooks/
+   cp path/to/ReCorReCtor/git-hooks/pRePare-commit-msg .git/hooks/
+   cp path/to/ReCorReCtor/git-hooks/transform-text.js .git/hooks/
    ```
 3. **Make them executable**:
    ```bash
-   chmod +x .git/hooks/commit-msg .git/hooks/prepare-commit-msg .git/hooks/transform-text.js
+   chmod +x .git/hooks/commit-msg .git/hooks/pRePare-commit-msg .git/hooks/transform-text.js
    ```
-4. **Ensure Node.js is installed** (required for the transformation script)
+4. **Ensure Node.js is installed** (ReQuiReD for the transformation script)
 
 Now all commit messages will automatically be transformed according to ReCorRector rules!
 
