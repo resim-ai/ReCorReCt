@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Git prepare-commit-msg hook for ReCorReCt text transformation
+# This hook applies text transformations to commit messages during preparation
+# (before the user edits them in the editor)
+
+# Arguments passed by git:
+# $1 = commit message file
+# $2 = source of commit message (message, template, merge, squash, commit)
+# $3 = commit SHA (for amend/rebase)
+
+COMMIT_MSG_FILE="$1"
+COMMIT_SOURCE="$2"
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Path to the transformation script
+TRANSFORM_SCRIPT="$SCRIPT_DIR/transform-text.js"
+
+# Only apply transformations for certain commit sources
+# Skip for merge commits, cherry-picks, etc. where the message is generated
+case "$COMMIT_SOURCE" in
+    message|template|"")
+        # Apply transformations for user-provided messages and templates
+        ;;
+    *)
+        # Skip transformations for merge, squash, commit (amend), etc.
+        exit 0
+        ;;
+esac
+
+# Check if Node.js is available
+if ! command -v node >/dev/null 2>&1; then
+    # Silently skip if Node.js is not available
+    exit 0
+fi
+
+# Check if the transformation script exists
+if [ ! -f "$TRANSFORM_SCRIPT" ]; then
+    # Silently skip if transformation script is not available
+    exit 0
+fi
+
+# Apply transformations to the commit message
+node "$TRANSFORM_SCRIPT" "$COMMIT_MSG_FILE" >/dev/null 2>&1
+
+# Always exit successfully - we don't want to block commits
+exit 0

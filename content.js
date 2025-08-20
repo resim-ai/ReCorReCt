@@ -1,11 +1,11 @@
-// Re-Capitalizer Chrome Extension Content Script
+// ReCorRector Chrome Extension Content Script
 // Transforms "re" + letter patterns to "Re" + capitalized letter
 
 (function () {
   "use strict";
 
-  // Regex to match "re" followed by any letter at word boundaries
-  const RE_PATTERN = /\bre([a-zA-Z])/g;
+  // Regex to match "re" followed by any letter anywhere in words
+  const RE_PATTERN = /re([a-zA-Z])/g;
 
   // Function to transform text using the re-capitalization rule
   function transformText(text) {
@@ -100,7 +100,7 @@
       characterData: true
     });
 
-    console.log("Re-Capitalizer extension initialized");
+    console.log("ReCorRector extension initialized");
   }
 
   // Initialize when DOM is ready

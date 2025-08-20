@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "ReCapitalizer",
+  "name": "ReCorRector",
   "version": "1.0.0",
-  "description": "Capitalizes 're' to 'Re' and the following letter in all text on webpages",
+  "description": "Transforms 're' to 'Re' and capitalizes the following letter in all text on webpages",
   "permissions": ["activeTab"],
   "content_scripts": [
     {

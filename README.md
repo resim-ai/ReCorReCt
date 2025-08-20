@@ -1,20 +1,31 @@
-# Re-Capitalizer Chrome Extension
+# ReCorReCtor
 
-A Chrome extension that automatically transforms text on web pages by capitalizing "re" to "Re" and the letter immediately following it.
+A comprehensive text transformation system that automatically transforms "re" followed by any lowercase letter into "Re" followed by the uppercase version of that letter. Includes both a Chrome extension for web pages and git hooks for commit messages.
 
 ## What it does
 
-This extension scans all text content on web pages and transforms words containing "re" followed by another letter:
+ReCorReCtor transforms text containing "re" followed by another letter, capitalizing both the "R" and the following letter:
 
 - `research` → `ReSearch`
 - `return` → `ReTurn`
 - `really` → `ReAlly`
-- `result` → `ReSult`
+- `corrections` → `corReCtions`
+- `regex` → `ReGex`
 - `develop` → `develop` (no change - doesn't contain "re" pattern)
+
+## Components
+
+### 1. Chrome Extension
+Automatically transforms text on web pages as you browse.
+
+### 2. Git Hooks
+Automatically transforms commit messages to maintain consistent capitalization in your repositories.
 
 ## Installation
 
-### Option 1: Load as Unpacked Extension (Developer Mode)
+### Chrome Extension
+
+#### Option 1: Load as Unpacked Extension (Developer Mode)
 
 1. **Download/Clone** the extension files to your computer
 2. **Open Chrome** and navigate to `chrome://extensions/`
@@ -23,7 +34,7 @@ This extension scans all text content on web pages and transforms words containi
 5. **Select the folder** containing the extension files (`manifest.json`, `content.js`, `README.md`)
 6. The extension will be installed and active immediately
 
-### Option 2: Package and Install
+#### Option 2: Package and Install
 
 1. In Chrome, go to `chrome://extensions/`
 2. Enable Developer Mode
@@ -31,15 +42,44 @@ This extension scans all text content on web pages and transforms words containi
 4. Select the extension folder
 5. This creates a `.crx` file that can be distributed
 
+### Git Hooks
+
+To enable automatic text transformation of commit messages in your other repos:
+
+1. **Navigate to your git repository**
+2. **Copy the hooks** from this repository:
+   ```bash
+   cp path/to/ReCorRector/git-hooks/commit-msg .git/hooks/
+   cp path/to/ReCorRector/git-hooks/prepare-commit-msg .git/hooks/
+   cp path/to/ReCorRector/git-hooks/transform-text.js .git/hooks/
+   ```
+3. **Make them executable**:
+   ```bash
+   chmod +x .git/hooks/commit-msg .git/hooks/prepare-commit-msg .git/hooks/transform-text.js
+   ```
+4. **Ensure Node.js is installed** (required for the transformation script)
+
+Now all commit messages will automatically be transformed according to ReCorRector rules!
+
 ## How it works
 
-The extension uses a content script that:
+### Chrome Extension
+
+The browser extension uses a content script that:
 
 1. **Scans all text** on the webpage when it loads
-2. **Uses regex pattern** `/\bre([a-zA-Z])/g` to find "re" followed by any letter at word boundaries
+2. **Uses regex pattern** `/re([a-zA-Z])/g` to find "re" followed by any letter anywhere in words
 3. **Transforms matches** to "Re" + capitalized following letter
 4. **Monitors dynamic content** using MutationObserver to handle single-page applications and dynamically loaded content
 5. **Preserves page functionality** by avoiding script tags, style elements, and other non-text content
+
+### Git Hooks
+
+The git hooks system includes:
+
+1. **`commit-msg` hook** - Transforms commit messages after they're written but before the commit is finalized
+2. **`prepare-commit-msg` hook** - Transforms commit message templates before editing
+3. **`transform-text.js`** - Node.js script that applies the same transformation logic as the Chrome extension
 
 ## Technical Details
 
@@ -52,20 +92,32 @@ The extension uses a content script that:
 ## Files Structure
 
 ```
-chrome-extension/
-├── manifest.json    # Extension configuration
-├── content.js      # Main text transformation logic
-└── README.md       # This documentation
+ReCorRector/
+├── manifest.json              # Chrome extension configuration
+├── content.js                 # Chrome extension text transformation logic
+├── git-hooks/                 # Git hooks for commit message transformation
+│   ├── commit-msg            # Post-commit message transformation hook
+│   ├── prepare-commit-msg    # Pre-commit message transformation hook
+│   ├── transform-text.js     # Node.js transformation script
+│   └── install-hooks.sh      # Installation script for other repositories
+└── README.md                 # This documentation
 ```
 
-## Privacy
+## Privacy & Security
 
-This extension:
+### Chrome Extension
 
 - ✅ **Runs locally** - all text processing happens in your browser
 - ✅ **No data collection** - doesn't send any information anywhere
 - ✅ **No network requests** - works entirely offline
 - ✅ **Minimal permissions** - only requires access to the active tab
+
+### Git Hooks
+
+- ✅ **Local processing only** - all transformations happen on your machine
+- ✅ **No external dependencies** - only requires Node.js
+- ✅ **No data transmission** - works entirely offline
+- ✅ **Non-blocking** - won't prevent commits if transformation fails
 
 ## Browser Compatibility
 
@@ -94,12 +146,23 @@ This extension:
 
 ## Development
 
-To modify the extension:
+### Chrome Extension
+
+To modify the Chrome extension:
 
 1. Edit the `content.js` file to change transformation logic
 2. Update `manifest.json` if changing permissions or configuration
 3. Go to `chrome://extensions/` and click the refresh button on the extension
 4. Test on various websites to ensure compatibility
+
+### Git Hooks
+
+To modify the git hooks:
+
+1. Edit `git-hooks/transform-text.js` to change transformation logic
+2. Test the transformation script: `node git-hooks/transform-text.js test-file.txt`
+3. Copy updated files to `.git/hooks/` in your test repository
+4. Test with actual commits to ensure functionality
 
 ## License
 

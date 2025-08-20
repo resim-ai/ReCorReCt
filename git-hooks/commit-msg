@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Git commit-msg hook for ReCorReCt text transformation
+# This hook applies the same "re" capitalization rules as the ReCorReCt Chrome extension
+# to commit messages before they are finalized.
+
+# Path to the commit message file (passed as first argument by git)
+COMMIT_MSG_FILE="$1"
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Path to the transformation script
+TRANSFORM_SCRIPT="$SCRIPT_DIR/transform-text.js"
+
+# Check if Node.js is available
+if ! command -v node >/dev/null 2>&1; then
+    echo "Warning: Node.js not found. ReCorReCt transformation skipped."
+    echo "Install Node.js to enable automatic text transformation in commit messages."
+    exit 0
+fi
+
+# Check if the transformation script exists
+if [ ! -f "$TRANSFORM_SCRIPT" ]; then
+    echo "Warning: ReCorReCt transformation script not found at $TRANSFORM_SCRIPT"
+    echo "Commit will proceed without text transformation."
+    exit 0
+fi
+
+# Apply transformations to the commit message
+if node "$TRANSFORM_SCRIPT" "$COMMIT_MSG_FILE"; then
+    # Success - transformations applied (if any)
+    exit 0
+else
+    echo "Error: Failed to apply ReCorReCt transformations to commit message"
+    echo "Commit will proceed with original message."
+    exit 0
+fi
