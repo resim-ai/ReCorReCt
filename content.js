@@ -5,13 +5,23 @@
   "use strict";
 
   // Regex to match "re" followed by any letter anywhere in words
+  // Also matches "Re" followed by lowercase letters to ensure proper capitalization
   const RE_PATTERN = /re([a-zA-Z])/g;
+  const RE_CAPITAL_PATTERN = /Re([a-z])/g;
 
   // Function to transform text using the re-capitalization rule
   function transformText(text) {
-    return text.replace(RE_PATTERN, function (match, followingLetter) {
+    // First handle lowercase "re" patterns
+    let result = text.replace(RE_PATTERN, function (match, followingLetter) {
       return "Re" + followingLetter.toUpperCase();
     });
+
+    // Then handle "Re" + lowercase letter patterns to ensure proper capitalization
+    result = result.replace(RE_CAPITAL_PATTERN, function (match, followingLetter) {
+      return "Re" + followingLetter.toUpperCase();
+    });
+
+    return result;
   }
 
   // Function to process all text nodes in a given element

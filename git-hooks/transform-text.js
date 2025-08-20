@@ -12,7 +12,9 @@ const fs = require('fs');
 const path = require('path');
 
 // Enhanced regex pattern to match "re" anywhere in words, not just at boundaries
+// Also matches "Re" followed by lowercase letters to ensure proper capitalization
 const RE_PATTERN = /re([a-zA-Z])/g;
+const RE_CAPITAL_PATTERN = /Re([a-z])/g;
 
 /**
  * Transform text using the re-capitalization rule
@@ -20,9 +22,17 @@ const RE_PATTERN = /re([a-zA-Z])/g;
  * @returns {string} - Transformed text
  */
 function transformText(text) {
-  return text.replace(RE_PATTERN, function (match, followingLetter) {
+  // First handle lowercase "re" patterns
+  let result = text.replace(RE_PATTERN, function (match, followingLetter) {
     return "Re" + followingLetter.toUpperCase();
   });
+
+  // Then handle "Re" + lowercase letter patterns to ensure proper capitalization
+  result = result.replace(RE_CAPITAL_PATTERN, function (match, followingLetter) {
+    return "Re" + followingLetter.toUpperCase();
+  });
+
+  return result;
 }
 
 /**
