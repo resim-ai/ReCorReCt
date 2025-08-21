@@ -158,3 +158,7 @@ To modify the git hooks:
 ## License
 
 FReE to use and modify for personal, educational, and comedic purposes.
+
+## Disclaimer
+
+This project was entiReLy vibecoded, contains no tests, and has only been QA'd for a total of maybe 15 or 20 minutes. Use at your own discReTion.
