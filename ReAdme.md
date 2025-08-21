@@ -49,9 +49,9 @@ To enable automatic text transformation of commit messages in your other RePos:
 1. **Navigate to your git RePository**
 2. **Copy the hooks** from this RePository:
    ```bash
-   cp path/to/ReCorReCtor/git-hooks/commit-msg .git/hooks/
-   cp path/to/ReCorReCtor/git-hooks/pRePare-commit-msg .git/hooks/
-   cp path/to/ReCorReCtor/git-hooks/transform-text.js .git/hooks/
+   cp path/to/ReCorRect/git-hooks/commit-msg .git/hooks/
+   cp path/to/ReCorRect/git-hooks/pRePare-commit-msg .git/hooks/
+   cp path/to/ReCorRect/git-hooks/transform-text.js .git/hooks/
    ```
 3. **Make them executable**:
    ```bash
@@ -59,7 +59,7 @@ To enable automatic text transformation of commit messages in your other RePos:
    ```
 4. **Ensure Node.js is installed** (ReQuiReD for the transformation script)
 
-Now all commit messages will automatically be transformed according to ReCorRector rules!
+Now all commit messages will automatically be transformed according to ReCorRect rules!
 
 ## How it works
 
@@ -92,7 +92,7 @@ The git hooks system includes:
 ## Files Structure
 
 ```
-ReCorRector/
+ReCorRect/
 ├── manifest.json              # Chrome extension configuration
 ├── content.js                 # Chrome extension text transformation logic
 ├── git-hooks/                 # Git hooks for commit message transformation

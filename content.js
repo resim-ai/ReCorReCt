@@ -1,4 +1,4 @@
-// ReCorRector Chrome Extension Content Script
+// ReCorRect Chrome Extension Content Script
 // Transforms "re" + letter patterns to "Re" + capitalized letter
 
 (function () {
@@ -123,7 +123,7 @@
       characterData: true
     });
 
-    console.log("ReCorRector extension initialized");
+    console.log("ReCorRect extension initialized");
   }
 
   // Initialize when DOM is ready
