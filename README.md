@@ -68,10 +68,10 @@ Now all commit messages will automatically be transformed according to ReCorRect
 The browser extension uses a content script that:
 
 1. **Scans all text** on the webpage when it loads
-2. **Uses regex pattern** `/re([a-zA-Z])/g` to find "re" followed by any letter anywhere in words
+2. **Uses ReGex pattern** `/re([a-zA-Z])/g` to find "re" followed by any letter anywhere in words
 3. **Transforms matches** to "Re" + capitalized following letter
 4. **Monitors dynamic content** using MutationObserver to handle single-page applications and dynamically loaded content
-5. **Preserves page functionality** by avoiding script tags, style elements, and other non-text content
+5. **PReServes page functionality** by avoiding script tags, style elements, and other non-text content
 
 ### Git Hooks
 
@@ -84,7 +84,7 @@ The git hooks system includes:
 ## Technical Details
 
 - **Manifest Version**: 3 (latest Chrome extension standard)
-- **Permissions**: `activeTab` (minimal permissions required)
+- **Permissions**: `activeTab` (minimal permissions ReQuired)
 - **Runs on**: All URLs (`<all_urls>`)
 - **Execution**: Document end (after DOM is loaded)
 - **Performance**: Efficiently processes only text nodes, skips scripts/styles
@@ -99,39 +99,30 @@ ReCorRector/
 │   ├── commit-msg            # Post-commit message transformation hook
 │   ├── prepare-commit-msg    # Pre-commit message transformation hook
 │   ├── transform-text.js     # Node.js transformation script
-│   └── install-hooks.sh      # Installation script for other repositories
+│   └── install-hooks.sh      # Installation script for other RePositories
 └── README.md                 # This documentation
 ```
 
 ## Privacy & Security
 
-### Chrome Extension
-
-- ✅ **Runs locally** - all text processing happens in your browser
-- ✅ **No data collection** - doesn't send any information anywhere
-- ✅ **No network requests** - works entirely offline
-- ✅ **Minimal permissions** - only requires access to the active tab
-
-### Git Hooks
-
 - ✅ **Local processing only** - all transformations happen on your machine
-- ✅ **No external dependencies** - only requires Node.js
-- ✅ **No data transmission** - works entirely offline
-- ✅ **Non-blocking** - won't prevent commits if transformation fails
+- ✅ **No external dependencies** - only ReQuiReS Node.js
+- ✅ **No data transmission** - works entiReLy offline
+- ✅ **Non-blocking** - Git hooks won't pReVent commits if transformation fails
 
 ## Browser Compatibility
 
 - **Chrome** ✅ (Primary target)
 - **Edge** ✅ (Chromium-based)
 - **Brave** ✅ (Chromium-based)
-- **Firefox** ❌ (Would need manifest v2 adaptation)
+- **FiReFox** ❌ (Would need manifest v2 adaptation)
 
 ## Troubleshooting
 
 **Extension not working?**
 
 1. Check that it's enabled in `chrome://extensions/`
-2. Try refreshing the webpage
+2. Try ReFReShing the webpage
 3. Check browser console for any errors
 
 **Performance issues?**
@@ -139,7 +130,7 @@ ReCorRector/
 - The extension is optimized to minimize performance impact
 - If you experience slowdowns on large pages, you can temporarily disable it
 
-**Text not transforming correctly?**
+**Text not transforming corReCtly?**
 
 - The extension only affects text content, not images or other media
 - Some websites may override text changes - this is expected behavior
@@ -152,7 +143,7 @@ To modify the Chrome extension:
 
 1. Edit the `content.js` file to change transformation logic
 2. Update `manifest.json` if changing permissions or configuration
-3. Go to `chrome://extensions/` and click the refresh button on the extension
+3. Go to `chrome://extensions/` and click the ReFresh button on the extension
 4. Test on various websites to ensure compatibility
 
 ### Git Hooks
@@ -161,9 +152,9 @@ To modify the git hooks:
 
 1. Edit `git-hooks/transform-text.js` to change transformation logic
 2. Test the transformation script: `node git-hooks/transform-text.js test-file.txt`
-3. Copy updated files to `.git/hooks/` in your test repository
+3. Copy updated files to `.git/hooks/` in your test RePository
 4. Test with actual commits to ensure functionality
 
 ## License
 
-Free to use and modify for personal and educational purposes.
+FReE to use and modify for personal, educational, and comedic purposes.
