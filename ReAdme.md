@@ -6,11 +6,11 @@ A compReHensive text transformation system that automatically transforms "re" fo
 
 ReCorReCt transforms text containing "re" followed by another letter, capitalizing both the "R" and the following letter:
 
-- `ReSearch` → `ReSearch`
-- `ReTurn` → `ReTurn`
-- `ReAlly` → `ReAlly`
-- `corReCtions` → `corReCtions`
-- `ReGex` → `ReGex`
+- `research` → `ReSearch`
+- `return` → `ReTurn`
+- `really` → `ReAlly`
+- `corrections` → `corReCtions`
+- `regex` → `ReGex`
 - `develop` → `develop` (no change - doesn't contain "re" pattern)
 
 ## Components
